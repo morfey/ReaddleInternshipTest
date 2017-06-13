@@ -37,7 +37,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             print(error)
             return
         }
-        print (user.profile.email)
+        performSegue(withIdentifier: "FoodTableVC", sender: nil)
     }
 
 

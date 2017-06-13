@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,9 +23,85 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="suF-gC-sj1" kind="show" identifier="FoodTableVC" id="zyD-Vh-L1O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Food TableVC-->
+        <scene sceneID="cKy-Oc-llM">
+            <objects>
+                <viewController id="suF-gC-sj1" customClass="FoodTableVC" customModule="ReaddleInternshipTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F5z-4b-Gdn"/>
+                        <viewControllerLayoutGuide type="bottom" id="sOQ-oj-7tT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7qg-Xt-N2t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-N5-69M">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pWf-Fa-Lsh">
+                                    <size key="itemSize" width="178" height="186"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DayCell" id="PmY-Aj-Azj" customClass="DayCell" customModule="ReaddleInternshipTest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="178" height="186"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="178" height="186"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szg-yd-hXr">
+                                                    <rect key="frame" x="58.5" y="28" width="61.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsD-BA-wQh">
+                                                    <rect key="frame" x="69" y="74" width="40" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="EsD-BA-wQh" firstAttribute="centerX" secondItem="PmY-Aj-Azj" secondAttribute="centerX" id="Qwv-Qn-EHQ"/>
+                                            <constraint firstItem="Szg-yd-hXr" firstAttribute="top" secondItem="PmY-Aj-Azj" secondAttribute="topMargin" constant="20" id="ceL-gD-NmO"/>
+                                            <constraint firstItem="EsD-BA-wQh" firstAttribute="top" secondItem="Szg-yd-hXr" secondAttribute="bottom" constant="25" id="hRK-F7-gq2"/>
+                                            <constraint firstItem="Szg-yd-hXr" firstAttribute="centerX" secondItem="PmY-Aj-Azj" secondAttribute="centerX" id="rjb-CK-0aZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dayNameLbl" destination="Szg-yd-hXr" id="cMO-Ap-J1s"/>
+                                            <outlet property="firstLbl" destination="EsD-BA-wQh" id="gTl-8F-5a6"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5vc-N5-69M" firstAttribute="leading" secondItem="7qg-Xt-N2t" secondAttribute="leading" id="8hR-fv-oFD"/>
+                            <constraint firstItem="5vc-N5-69M" firstAttribute="top" secondItem="7qg-Xt-N2t" secondAttribute="top" id="Hw9-Qq-gqy"/>
+                            <constraint firstAttribute="trailing" secondItem="5vc-N5-69M" secondAttribute="trailing" id="kub-hA-jko"/>
+                            <constraint firstItem="sOQ-oj-7tT" firstAttribute="top" secondItem="5vc-N5-69M" secondAttribute="bottom" id="qD6-mV-aKD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collection" destination="5vc-N5-69M" id="XUs-4g-WCf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tZ-LG-Da8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="736.79999999999995" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>

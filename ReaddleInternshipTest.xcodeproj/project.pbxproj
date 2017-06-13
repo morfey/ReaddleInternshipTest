@@ -14,6 +14,8 @@
 		22D8CAE71EF00E1600FDFD0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE61EF00E1600FDFD0C /* Assets.xcassets */; };
 		22D8CAEA1EF00E1600FDFD0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */; };
 		22D8CAF51EF011CF00FDFD0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */; };
+		22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */; };
+		22D8CAFF1EF0269100FDFD0C /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFE1EF0269100FDFD0C /* DayCell.swift */; };
 		58C1EB45E6FEBA7F0196C8DB /* Pods_ReaddleInternshipTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095CDDDBE4B2442DC661E17E /* Pods_ReaddleInternshipTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		22D8CAEB1EF00E1600FDFD0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22D8CAF11EF00E9400FDFD0C /* ReaddleInternshipTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaddleInternshipTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableVC.swift; sourceTree = "<group>"; };
+		22D8CAFE1EF0269100FDFD0C /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		A6FDCA26CBE4EB2F33FCD545 /* Pods-ReaddleInternshipTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaddleInternshipTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReaddleInternshipTest/Pods-ReaddleInternshipTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,7 @@
 			children = (
 				22D8CAE01EF00E1600FDFD0C /* Main.storyboard */,
 				22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */,
+				22D8CAFE1EF0269100FDFD0C /* DayCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				22D8CADE1EF00E1600FDFD0C /* ViewController.swift */,
+				22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -255,6 +261,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D8CADF1EF00E1600FDFD0C /* ViewController.swift in Sources */,
+				22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */,
+				22D8CAFF1EF0269100FDFD0C /* DayCell.swift in Sources */,
 				22D8CAE51EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld in Sources */,
 				22D8CADD1EF00E1600FDFD0C /* AppDelegate.swift in Sources */,
 			);
