@@ -7,24 +7,27 @@
 //
 
 import UIKit
+import GoogleAPIClientForREST
 
 class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var output: UITextView!
     
-    var user: String!
+    var dishesForToday: [String]! = []
+    private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда'", "'Четверг'", "'Пятница'", "'Суббота'"]
+    private let service = GTLRSheetsService()
+    private var choiseForWeek: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collection.delegate = self
         collection.dataSource = self
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        print(dishesForToday)
+//        for str in dishesForToday {
+//            output.text.append(str)
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

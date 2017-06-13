@@ -43,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-N5-69M">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pWf-Fa-Lsh">
                                     <size key="itemSize" width="178" height="186"/>
@@ -86,22 +86,30 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZV-WY-R6X">
+                                <rect key="frame" x="67" y="378" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5vc-N5-69M" firstAttribute="leading" secondItem="7qg-Xt-N2t" secondAttribute="leading" id="8hR-fv-oFD"/>
                             <constraint firstItem="5vc-N5-69M" firstAttribute="top" secondItem="7qg-Xt-N2t" secondAttribute="top" id="Hw9-Qq-gqy"/>
                             <constraint firstAttribute="trailing" secondItem="5vc-N5-69M" secondAttribute="trailing" id="kub-hA-jko"/>
-                            <constraint firstItem="sOQ-oj-7tT" firstAttribute="top" secondItem="5vc-N5-69M" secondAttribute="bottom" id="qD6-mV-aKD"/>
+                            <constraint firstItem="sOQ-oj-7tT" firstAttribute="top" secondItem="5vc-N5-69M" secondAttribute="bottom" constant="297" id="qD6-mV-aKD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collection" destination="5vc-N5-69M" id="XUs-4g-WCf"/>
+                        <outlet property="output" destination="YZV-WY-R6X" id="heB-rb-szb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tZ-LG-Da8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="37"/>
+            <point key="canvasLocation" x="1269.5999999999999" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>

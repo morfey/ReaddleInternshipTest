@@ -17,6 +17,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда'", "'Четверг'", "'Пятница'", "'Суббота'"]
     private var usersList: [String]! = []
     private var dishes: [String]! = []
+    private var dishesForToday: [String]! = []
+    var menu: WeekendMenu!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         GGLContext.sharedInstance().configureWithError(&error)
         
         if error != nil {
-            print(error)
+            print(error!)
             return
         }
         
@@ -44,8 +46,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FoodTableVC" {
             if let FoodTableVC = segue.destination as? FoodTableVC {
-                if let user = sender as? String {
-                    FoodTableVC.user = user
+                if let dishes = sender as? [String] {
+                    FoodTableVC.dishesForToday = dishes
                 }
             }
         }
@@ -58,7 +60,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
         self.service.authorizer = user.authentication.fetcherAuthorizer()
         
-        listTodayDishes()
+        //listTodayDishes()
         getUsersList()
         
         let alert = UIAlertController(title: "", message: "Enter your name", preferredStyle: .alert)
@@ -69,8 +71,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             if let textField = alert?.textFields?[0] {
                 if let name = textField.text {
-                    if self.usersList.contains(name) {
-                        self.performSegue(withIdentifier: "FoodTableVC", sender: name)
+                    if self.usersList.contains(name){
+                        if let index = self.usersList.index(of: name) {
+                            self.userChoiseForToday(index: index+1)
+                            self.performSegue(withIdentifier: "FoodTableVC", sender: self.dishesForToday)
+                        }
+                        
                     } else {
                         self.present(alert!, animated: true, completion: nil)
                     }
@@ -100,7 +106,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     func getUsersList() {
         let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!A3:B"
+        let range = "\(weekDays[currentDayOfWeek])!A:B"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         service.executeQuery(query,
@@ -112,13 +118,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     func userChoiseForToday(index: Int) {
         let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!B\(index):M\(index)"
+        let range = "\(weekDays[currentDayOfWeek])!B2:M\(index)"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         query.majorDimension = "COLUMNS"
         service.executeQuery(query,
                              delegate: self,
-                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+                             didFinish: #selector(displayResultWithTicketChoise(ticket:finishedWithObject:error:))
         )
     }
     
@@ -172,40 +178,36 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             dishes.append(dish)
         }
         print (dishes)
+        
     }
-
-//    func displayResultWithTicket(ticket: GTLRServiceTicket,
-//                                 finishedWithObject result : GTLRSheets_ValueRange,
-//                                 error : NSError?) {
-//        
-//        if let error = error {
-//            showAlert(title: "Error", message: error.localizedDescription)
-//            return
-//        }
-//        
-//        var majorsString = ""
-//        let rows = result.values!
-//        
-//        if rows.isEmpty {
-//            print("No data found.")
-//            return
-//        }
-//        
-//        majorsString += "Name, Major:\n"
-//        for (index, row) in rows.enumerated() {
-//            let name = row[0]
-//            if "\(name)" == "Боб Петтит" {
-//                userChoiseForToday(index: index+2)
-//            } else {
-//                majorsString += "\(name)\n"
-//            }
-//            //let major = row[1]
-//            
-//            
-//        }
-//        
-//        print (majorsString)
-//    }
+    
+    func displayResultWithTicketChoise(ticket: GTLRServiceTicket,
+                                       finishedWithObject result : GTLRSheets_ValueRange,
+                                       error : NSError?){
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        let rows = result.values!
+        
+        if rows.isEmpty {
+            print("No data found.")
+            return
+        }
+        
+        var choise = ""
+        var dish = ""
+        for row in rows {
+            choise = row[row.count-1] as! String
+            if choise == "1" {
+                dish = row[0] as! String
+                dishesForToday.append(dish)
+            }
+        }
+        print (dishesForToday)
+        
+    }
     
     // Helper for showing an alert
     func showAlert(title : String, message: String) {
