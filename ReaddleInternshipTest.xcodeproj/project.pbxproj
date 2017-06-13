@@ -17,6 +17,7 @@
 		22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */; };
 		22D8CAFF1EF0269100FDFD0C /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFE1EF0269100FDFD0C /* DayCell.swift */; };
 		22D8CB011EF02DCA00FDFD0C /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CB001EF02DCA00FDFD0C /* Constans.swift */; };
+		22D8CB031EF038A700FDFD0C /* WeekendMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */; };
 		58C1EB45E6FEBA7F0196C8DB /* Pods_ReaddleInternshipTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095CDDDBE4B2442DC661E17E /* Pods_ReaddleInternshipTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableVC.swift; sourceTree = "<group>"; };
 		22D8CAFE1EF0269100FDFD0C /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		22D8CB001EF02DCA00FDFD0C /* Constans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekendMenu.swift; sourceTree = "<group>"; };
 		A6FDCA26CBE4EB2F33FCD545 /* Pods-ReaddleInternshipTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaddleInternshipTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReaddleInternshipTest/Pods-ReaddleInternshipTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			children = (
 				22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */,
 				22D8CB001EF02DCA00FDFD0C /* Constans.swift */,
+				22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D8CB031EF038A700FDFD0C /* WeekendMenu.swift in Sources */,
 				22D8CADF1EF00E1600FDFD0C /* ViewController.swift in Sources */,
 				22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */,
 				22D8CB011EF02DCA00FDFD0C /* Constans.swift in Sources */,

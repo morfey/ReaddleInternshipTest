@@ -14,6 +14,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     private let service = GTLRSheetsService()
+    private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда'", "'Четверг'", "'Пятница'", "'Суббота'"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     func listMajors() {
         //output.text = "Getting sheet data..."
-        let spreadsheetId = "19-YCFE-5La3UKTxfszxN2jxNqHe6RjS0gNgGiX81KEs"
-        let range = "day!A:B"
+        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
+        print(weekDays[currentDayOfWeek])
+        let range = "'Понедельник '!A3:M"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         service.executeQuery(query,
@@ -81,9 +84,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         majorsString += "Name, Major:\n"
         for row in rows {
             let name = row[0]
-            let major = row[1]
+            //let major = row[1]
             
-            majorsString += "\(name) \(major)\n"
+            majorsString += "\(name)\n"
         }
         
         print (majorsString)
@@ -105,7 +108,11 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
-
-
+    
+}
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
+    }
 }
 
