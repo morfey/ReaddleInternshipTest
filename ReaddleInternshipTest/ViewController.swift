@@ -45,17 +45,41 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
         self.service.authorizer = user.authentication.fetcherAuthorizer()
-        listMajors()
+        //listTodayDishes()
+        userChoiseForToday(index: 5)
+        //getUsersList()
         //performSegue(withIdentifier: "FoodTableVC", sender: nil)
     }
     
-    func listMajors() {
-        //output.text = "Getting sheet data..."
+    func listTodayDishes() {
         let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        //print(weekDays[currentDayOfWeek])
         let range = "\(weekDays[currentDayOfWeek])!B2:M2"
-        //let range = ["sheetId": weekDays[currentDayOfWeek], "dimension": "ROWS", "startIndex": "B2", "endIndex": "M2"]
+        let query = GTLRSheetsQuery_SpreadsheetsValuesGet
+            .query(withSpreadsheetId: spreadsheetId, range:range)
+        query.majorDimension = "COLUMNS"
+        service.executeQuery(query,
+                             delegate: self,
+                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+        )
+    }
+    
+    func getUsersList() {
+        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
+        let range = "\(weekDays[currentDayOfWeek])!A2:B"
+        let query = GTLRSheetsQuery_SpreadsheetsValuesGet
+            .query(withSpreadsheetId: spreadsheetId, range:range)
+        service.executeQuery(query,
+                             delegate: self,
+                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+        )
+    }
+    
+    func userChoiseForToday(index: Int) {
+        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
+        let range = "\(weekDays[currentDayOfWeek])!B\(index):M\(index)"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         query.majorDimension = "COLUMNS"
@@ -84,8 +108,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
         
         majorsString += "Name, Major:\n"
+        var name = ""
         for row in rows {
-            let name = row[0]
+            if row.count > 0 {
+                name = row[0] as! String
+            } else {
+                name = "0"
+            }
             //let major = row[1]
             
             majorsString += "\(name)\n"
@@ -93,7 +122,39 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
         print (majorsString)
     }
-    
+
+//    func displayResultWithTicket(ticket: GTLRServiceTicket,
+//                                 finishedWithObject result : GTLRSheets_ValueRange,
+//                                 error : NSError?) {
+//        
+//        if let error = error {
+//            showAlert(title: "Error", message: error.localizedDescription)
+//            return
+//        }
+//        
+//        var majorsString = ""
+//        let rows = result.values!
+//        
+//        if rows.isEmpty {
+//            print("No data found.")
+//            return
+//        }
+//        
+//        majorsString += "Name, Major:\n"
+//        for (index, row) in rows.enumerated() {
+//            let name = row[0]
+//            if "\(name)" == "Боб Петтит" {
+//                userChoiseForToday(index: index+2)
+//            } else {
+//                majorsString += "\(name)\n"
+//            }
+//            //let major = row[1]
+//            
+//            
+//        }
+//        
+//        print (majorsString)
+//    }
     
     // Helper for showing an alert
     func showAlert(title : String, message: String) {
