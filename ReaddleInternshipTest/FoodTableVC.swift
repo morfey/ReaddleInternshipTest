@@ -10,6 +10,8 @@ import UIKit
 
 class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collection: UICollectionView!
+    
+    var user: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()

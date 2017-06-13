@@ -9,14 +9,14 @@
 import Foundation
 
 class WeekendMenu {
-    private let _salads:[String]!
+    private let _dishes:[String]!
     
     
-    var salads : [String]{
-        return _salads
+    var dishes : [String]{
+        return _dishes
     }
 
-    init (salads: [String]){
-        self._salads = salads
+    init (dishes: [String]){
+        self._dishes = dishes
     }
 }

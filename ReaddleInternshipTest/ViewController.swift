@@ -15,6 +15,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     private let service = GTLRSheetsService()
     private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда'", "'Четверг'", "'Пятница'", "'Суббота'"]
+    private var usersList: [String]! = []
+    private var dishes: [String]! = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,16 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
         view.addSubview(signInButton)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FoodTableVC" {
+            if let FoodTableVC = segue.destination as? FoodTableVC {
+                if let user = sender as? String {
+                    FoodTableVC.user = user
+                }
+            }
+        }
+    }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
@@ -45,10 +57,31 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
         self.service.authorizer = user.authentication.fetcherAuthorizer()
+        
+        listTodayDishes()
+        getUsersList()
+        
+        let alert = UIAlertController(title: "", message: "Enter your name", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            if let textField = alert?.textFields?[0] {
+                if let name = textField.text {
+                    if self.usersList.contains(name) {
+                        self.performSegue(withIdentifier: "FoodTableVC", sender: name)
+                    } else {
+                        self.present(alert!, animated: true, completion: nil)
+                    }
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
         //listTodayDishes()
-        userChoiseForToday(index: 5)
-        //getUsersList()
-        //performSegue(withIdentifier: "FoodTableVC", sender: nil)
+        //userChoiseForToday(index: 5)
     }
     
     func listTodayDishes() {
@@ -60,14 +93,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         query.majorDimension = "COLUMNS"
         service.executeQuery(query,
                              delegate: self,
-                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+                             didFinish: #selector(displayResultWithTicketDishes(ticket:finishedWithObject:error:))
         )
     }
     
     func getUsersList() {
         let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!A2:B"
+        let range = "\(weekDays[currentDayOfWeek])!A3:B"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         service.executeQuery(query,
@@ -92,14 +125,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     // Process the response and display output
     func displayResultWithTicket(ticket: GTLRServiceTicket,
                                  finishedWithObject result : GTLRSheets_ValueRange,
-                                 error : NSError?) {
+                                 error : NSError?){
         
         if let error = error {
             showAlert(title: "Error", message: error.localizedDescription)
             return
         }
-        
-        var majorsString = ""
         let rows = result.values!
         
         if rows.isEmpty {
@@ -107,7 +138,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
         
-        majorsString += "Name, Major:\n"
         var name = ""
         for row in rows {
             if row.count > 0 {
@@ -115,12 +145,33 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             } else {
                 name = "0"
             }
-            //let major = row[1]
-            
-            majorsString += "\(name)\n"
+        
+            usersList.append(name)
+        }
+        print(usersList)
+        
+    }
+    func displayResultWithTicketDishes(ticket: GTLRServiceTicket,
+                                 finishedWithObject result : GTLRSheets_ValueRange,
+                                 error : NSError?){
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        let rows = result.values!
+        
+        if rows.isEmpty {
+            print("No data found.")
+            return
         }
         
-        print (majorsString)
+        var dish = ""
+        for row in rows {
+            dish = row[0] as! String
+            dishes.append(dish)
+        }
+        print (dishes)
     }
 
 //    func displayResultWithTicket(ticket: GTLRServiceTicket,
