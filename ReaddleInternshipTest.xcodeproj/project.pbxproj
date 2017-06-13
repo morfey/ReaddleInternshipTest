@@ -74,17 +74,49 @@
 		22D8CADB1EF00E1600FDFD0C /* ReaddleInternshipTest */ = {
 			isa = PBXGroup;
 			children = (
+				22D8CAF91EF015E700FDFD0C /* Resources */,
+				22D8CAF81EF015DE00FDFD0C /* Controller */,
+				22D8CAF71EF015D700FDFD0C /* View */,
+				22D8CAF61EF015BA00FDFD0C /* Model */,
 				22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */,
-				22D8CADE1EF00E1600FDFD0C /* ViewController.swift */,
-				22D8CAE01EF00E1600FDFD0C /* Main.storyboard */,
 				22D8CAE61EF00E1600FDFD0C /* Assets.xcassets */,
-				22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */,
-				22D8CAEB1EF00E1600FDFD0C /* Info.plist */,
-				22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */,
-				22D8CAF11EF00E9400FDFD0C /* ReaddleInternshipTest-Bridging-Header.h */,
-				22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */,
 			);
 			path = ReaddleInternshipTest;
+			sourceTree = "<group>";
+		};
+		22D8CAF61EF015BA00FDFD0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		22D8CAF71EF015D700FDFD0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				22D8CAE01EF00E1600FDFD0C /* Main.storyboard */,
+				22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		22D8CAF81EF015DE00FDFD0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				22D8CADE1EF00E1600FDFD0C /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		22D8CAF91EF015E700FDFD0C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22D8CAEB1EF00E1600FDFD0C /* Info.plist */,
+				22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */,
+				22D8CAF11EF00E9400FDFD0C /* ReaddleInternshipTest-Bridging-Header.h */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		BF5FBD87632B89FD2A8B7D4D /* Pods */ = {
