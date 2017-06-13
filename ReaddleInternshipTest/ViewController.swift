@@ -53,10 +53,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         //output.text = "Getting sheet data..."
         let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        print(weekDays[currentDayOfWeek])
-        let range = "'Понедельник '!A3:M"
+        //print(weekDays[currentDayOfWeek])
+        let range = "\(weekDays[currentDayOfWeek])!B2:M2"
+        //let range = ["sheetId": weekDays[currentDayOfWeek], "dimension": "ROWS", "startIndex": "B2", "endIndex": "M2"]
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
+        query.majorDimension = "COLUMNS"
         service.executeQuery(query,
                              delegate: self,
                              didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
