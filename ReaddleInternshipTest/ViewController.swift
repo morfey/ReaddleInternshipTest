@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import GoogleAPIClientForREST
+import GoogleSignIn
 
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+    
+    private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
+    private let service = GTLRSheetsService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().scopes = scopes
         
         
         let signInButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
@@ -37,7 +43,67 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             print(error)
             return
         }
-        performSegue(withIdentifier: "FoodTableVC", sender: nil)
+        self.service.authorizer = user.authentication.fetcherAuthorizer()
+        listMajors()
+        //performSegue(withIdentifier: "FoodTableVC", sender: nil)
+    }
+    
+    func listMajors() {
+        //output.text = "Getting sheet data..."
+        let spreadsheetId = "19-YCFE-5La3UKTxfszxN2jxNqHe6RjS0gNgGiX81KEs"
+        let range = "day!A:B"
+        let query = GTLRSheetsQuery_SpreadsheetsValuesGet
+            .query(withSpreadsheetId: spreadsheetId, range:range)
+        service.executeQuery(query,
+                             delegate: self,
+                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+        )
+    }
+    
+    // Process the response and display output
+    func displayResultWithTicket(ticket: GTLRServiceTicket,
+                                 finishedWithObject result : GTLRSheets_ValueRange,
+                                 error : NSError?) {
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        
+        var majorsString = ""
+        let rows = result.values!
+        
+        if rows.isEmpty {
+            print("No data found.")
+            return
+        }
+        
+        majorsString += "Name, Major:\n"
+        for row in rows {
+            let name = row[0]
+            let major = row[1]
+            
+            majorsString += "\(name) \(major)\n"
+        }
+        
+        print (majorsString)
+    }
+    
+    
+    // Helper for showing an alert
+    func showAlert(title : String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        let ok = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.default,
+            handler: nil
+        )
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "054322BFB448A163BFCEE28C6AB00CBC"
+               BlueprintIdentifier = "5219DC09D1BBEF1DF25AD9540BD922C9"
                BuildableName = "Pods_ReaddleInternshipTest.framework"
                BlueprintName = "Pods-ReaddleInternshipTest"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "054322BFB448A163BFCEE28C6AB00CBC"
+            BlueprintIdentifier = "5219DC09D1BBEF1DF25AD9540BD922C9"
             BuildableName = "Pods_ReaddleInternshipTest.framework"
             BlueprintName = "Pods-ReaddleInternshipTest"
             ReferencedContainer = "container:Pods.xcodeproj">

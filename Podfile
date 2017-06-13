@@ -7,5 +7,7 @@ target 'ReaddleInternshipTest' do
 
   # Pods for ReaddleInternshipTest
   pod 'Google/SignIn'
+  pod 'GoogleAPIClientForREST/Drive'
+  pod 'GoogleAPIClientForREST/Sheets'
 
 end
