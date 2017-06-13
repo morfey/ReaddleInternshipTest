@@ -1,0 +1,6 @@
+framework module Pods_ReaddleInternshipTest {
+  umbrella header "Pods-ReaddleInternshipTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
