@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginVC.swift
 //  ReaddleInternshipTest
 //
 //  Created by  Tim on 13.06.17.
@@ -10,7 +10,7 @@ import UIKit
 import GoogleAPIClientForREST
 import GoogleSignIn
 
-class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     private let service = GTLRSheetsService()
@@ -18,7 +18,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     private var usersList: [String]! = []
     private var dishes: [String]! = []
     private var dishesForToday: [String]! = []
-    var menu: WeekendMenu!
     private var currentUser: String!
 
     override func viewDidLoad() {
@@ -94,7 +93,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
     
     func listTodayDishes() {
-        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let spreadsheetId = SPREADSHEET_ID
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
         let range = "\(weekDays[currentDayOfWeek])!B2:M2"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
@@ -128,19 +127,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         service.executeQuery(query,
                              delegate: self,
                              didFinish: #selector(displayResultWithTicketChoise(ticket:finishedWithObject:error:))
-        )
-    }
-    
-    func userChoiseForToday1(index: Int) {
-        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
-        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!B2:M\(index)"
-        let query = GTLRSheetsQuery_SpreadsheetsValuesGet
-            .query(withSpreadsheetId: spreadsheetId, range:range)
-        query.majorDimension = "COLUMNS"
-        service.executeQuery(query,
-                             delegate: self,
-                             didFinish: #selector(displayResultWithTicketChoise1(ticket:finishedWithObject:error:))
         )
     }
     
@@ -219,7 +205,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         //var dish = ""
         //print (rows)
         var dishes: [String] = rows[0] as! [String]
-        var choises: [String] = rows [rows.count-1] as! [String]
+        let choises: [String] = rows [rows.count-1] as! [String]
         for (index, choise) in choises.enumerated() {
             if choise == "1" {
                 dishesForToday.append(dishes[index])
@@ -230,33 +216,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
     }
     
-    func displayResultWithTicketChoise1(ticket: GTLRServiceTicket,
-                                       finishedWithObject result : GTLRSheets_ValueRange,
-                                       error : NSError?){
-        
-        if let error = error {
-            showAlert(title: "Error", message: error.localizedDescription)
-            return
-        }
-        let rows = result.values!
-        
-        if rows.isEmpty {
-            print("No data found.")
-            return
-        }
-        
-        var choise = ""
-        var dish = ""
-        for row in rows {
-            choise = row[row.count-1] as! String
-            if choise == "1" {
-                dish = row[0] as! String
-                dishesForToday.append(dish)
-            }
-        }
-        print (dishesForToday)
-        
-    }
     
     // Helper for showing an alert
     func showAlert(title : String, message: String) {
