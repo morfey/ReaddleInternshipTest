@@ -9,8 +9,8 @@
 import UIKit
 import GoogleAPIClientForREST
 
-class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    @IBOutlet weak var collection: UICollectionView!
+class FoodTableVC: UIViewController{
+    //@IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var output: UITextView!
     
     var dishesForToday: [String]! = []
@@ -21,20 +21,20 @@ class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collection.delegate = self
-        collection.dataSource = self
+        //collection.delegate = self
+        //collection.dataSource = self
         
         print(dishesForToday)
         //GIDSignIn.sharedInstance().signInSilently()
         
         
         for str in dishesForToday {
-            output.text.append(str)
+            output.text.append("\(str)\n")
         }
     }
 
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    /*func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as? DayCell {
             cell.configureCell()
             return cell
@@ -55,7 +55,7 @@ class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 105, height: 105)
-    }
+    }*/
 
     
 

@@ -124,7 +124,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         let range = "\(weekDays[currentDayOfWeek])!B2:M\(index)"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
-        query.majorDimension = "COLUMNS"
+        query.majorDimension = "ROWS"
         service.executeQuery(query,
                              delegate: self,
                              didFinish: #selector(displayResultWithTicketChoise(ticket:finishedWithObject:error:))
@@ -165,7 +165,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             if row.count > 0 {
                 name = row[0] as! String
                 if name == currentUser {
-                    userChoiseForToday(index: index)
+                    userChoiseForToday(index: index+1)
                 }
             } else {
                 name = "0"
@@ -215,13 +215,14 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
         
-        var choise = ""
-        var dish = ""
-        for row in rows {
-            choise = row[row.count-1] as! String
+        //var choise = ""
+        //var dish = ""
+        //print (rows)
+        var dishes: [String] = rows[0] as! [String]
+        var choises: [String] = rows [rows.count-1] as! [String]
+        for (index, choise) in choises.enumerated() {
             if choise == "1" {
-                dish = row[0] as! String
-                dishesForToday.append(dish)
+                dishesForToday.append(dishes[index])
             }
         }
         print (dishesForToday)
