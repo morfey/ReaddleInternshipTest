@@ -25,10 +25,14 @@ class FoodTableVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         collection.dataSource = self
         
         print(dishesForToday)
-//        for str in dishesForToday {
-//            output.text.append(str)
-//        }
+        //GIDSignIn.sharedInstance().signInSilently()
+        
+        
+        for str in dishesForToday {
+            output.text.append(str)
+        }
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as? DayCell {
