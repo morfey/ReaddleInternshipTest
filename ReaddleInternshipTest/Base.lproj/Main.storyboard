@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="suF-gC-sj1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,6 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="330" y="36"/>
         </scene>
         <!--Food TableVC-->
         <scene sceneID="cKy-Oc-llM">
@@ -48,16 +49,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znM-5e-Zu3">
+                                <rect key="frame" x="131" y="42" width="113" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="iJU-ds-uQ1"/>
+                                    <constraint firstAttribute="width" constant="113" id="mad-yV-uxL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="znM-5e-Zu3" firstAttribute="centerX" secondItem="7qg-Xt-N2t" secondAttribute="centerX" id="Ftq-MV-kzc"/>
+                            <constraint firstItem="znM-5e-Zu3" firstAttribute="top" secondItem="F5z-4b-Gdn" secondAttribute="bottom" constant="22" id="rUC-n3-kGC"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="output" destination="YZV-WY-R6X" id="heB-rb-szb"/>
+                        <outlet property="statusText" destination="znM-5e-Zu3" id="fdT-af-RvQ"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginVC" id="rmP-Rf-5E5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tZ-LG-Da8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5999999999999" y="36.431784107946029"/>
+            <point key="canvasLocation" x="1309.5999999999999" y="35.532233883058474"/>
         </scene>
     </scenes>
 </document>

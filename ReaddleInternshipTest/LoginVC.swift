@@ -22,7 +22,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print ("loginVC")
         var error: NSError?
         GGLContext.sharedInstance().configureWithError(&error)
         
@@ -81,12 +81,18 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                             self.present(alert!, animated: true, completion: nil)
                         }*/
                     self.currentUser = name
-                    self.getUsersList()
+                    print (name)
+                    NotificationCenter.default.post(
+                        name: Notification.Name(rawValue: "ServiceSpreadsheet"),
+                        object: user.authentication.fetcherAuthorizer(),
+                        userInfo: ["statusText": "Signed in user:\n\(name)"])
+                    //self.getUsersList()
                 }
             }
         }))
         
         self.present(alert, animated: true, completion: nil)
+        
         
         //listTodayDishes()
         //userChoiseForToday(index: 5)
