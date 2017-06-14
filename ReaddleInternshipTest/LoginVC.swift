@@ -22,7 +22,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("loginVC")
         var error: NSError?
         GGLContext.sharedInstance().configureWithError(&error)
         
@@ -43,25 +42,22 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         view.addSubview(signInButton)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FoodTableVC" {
-            if let FoodTableVC = segue.destination as? FoodTableVC {
-                if let dishes = sender as? [String] {
-                    FoodTableVC.dishesForToday = dishes
-                }
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "FoodTableVC" {
+//            if let FoodTableVC = segue.destination as? FoodTableVC {
+//                if let dishes = sender as? [String] {
+//                    FoodTableVC.dishesForToday = dishes
+//                }
+//            }
+//        }
+//    }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
             print(error)
             return
         }
-        self.service.authorizer = user.authentication.fetcherAuthorizer()
-        
-        //listTodayDishes()
-        //getUsersList()
+        //self.service.authorizer = user.authentication.fetcherAuthorizer()
         
         let alert = UIAlertController(title: "", message: "Enter your name", preferredStyle: .alert)
         
@@ -80,22 +76,16 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         } else {
                             self.present(alert!, animated: true, completion: nil)
                         }*/
-                    self.currentUser = name
-                    print (name)
                     NotificationCenter.default.post(
                         name: Notification.Name(rawValue: "ServiceSpreadsheet"),
                         object: user.authentication.fetcherAuthorizer(),
-                        userInfo: ["statusText": "Signed in user:\n\(name)"])
-                    //self.getUsersList()
+                        userInfo: ["statusText": "Signed in user:\n\(name)", "currentUser":name])
                 }
             }
         }))
         
         self.present(alert, animated: true, completion: nil)
-        
-        
-        //listTodayDishes()
-        //userChoiseForToday(index: 5)
+
     }
     
     func listTodayDishes() {
