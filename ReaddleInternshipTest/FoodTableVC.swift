@@ -127,10 +127,8 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
                 if name == self.currentUser {
                     userChoiseForToday(index: index+1)
                 }
-            } else {
-                name = "0"
             }
-        }        
+        }
     }
 
     func showAlert(title : String, message: String) {

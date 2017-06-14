@@ -16,6 +16,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     private let service = GTLRSheetsService()
     private var currentUser: User?
+    private var usersList: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,68 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
         view.addSubview(signInButton)
     }
+    
+    func getUsersList() {
+        let spreadsheetId = SPREADSHEET_ID
+        let range = "A3:B"
+        let query = GTLRSheetsQuery_SpreadsheetsValuesGet
+            .query(withSpreadsheetId: spreadsheetId, range:range)
+        service.executeQuery(query,
+                             delegate: self,
+                             didFinish: #selector(displayResultWithTicket(ticket:finishedWithObject:error:))
+        )
+    }
+    
+    func displayResultWithTicket(ticket: GTLRServiceTicket,
+                                 finishedWithObject result : GTLRSheets_ValueRange,
+                                 error : NSError?){
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        let rows = result.values!
+        
+        if rows.isEmpty {
+            print("No data found.")
+            return
+        }
+        
+        var name = ""
+        for row in rows {
+            if row.count > 0 {
+                name = row[0] as! String
+                usersList.append(name)
+            }
+        }
+        print(usersList)
+    }
+    
+    func showAlert(title : String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        let ok = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.default,
+            handler: nil
+        )
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
             print(error)
             return
         }
+
+        self.service.authorizer = user.authentication.fetcherAuthorizer()
+        
+        getUsersList()
         
         let alert = UIAlertController(title: "", message: "Как тебя зовут?", preferredStyle: .alert)
         
@@ -52,7 +109,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             if let textField = alert?.textFields?[0] {
-                if let name = textField.text {
+                if let name = textField.text, textField.text != "", self.usersList.contains(textField.text!) {
                     let dataName = User(context: context)
                     dataName.name = name
                     ad.saveContext()
@@ -60,6 +117,8 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                         name: Notification.Name(rawValue: "ServiceSpreadsheet"),
                         object: user.authentication.fetcherAuthorizer(),
                         userInfo: ["currentUser":name])
+                } else {
+                    self.present(alert!, animated: true, completion: nil)
                 }
             }
         }))
