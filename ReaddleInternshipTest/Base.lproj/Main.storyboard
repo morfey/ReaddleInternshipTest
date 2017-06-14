@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,7 +40,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Меню на Понедельник" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znM-5e-Zu3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Меню на сегодня" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znM-5e-Zu3">
                                 <rect key="frame" x="81" y="42" width="213" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="iJU-ds-uQ1"/>
@@ -50,10 +51,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YZV-WY-R6X">
-                                <rect key="frame" x="67" y="214" width="240" height="239"/>
+                                <rect key="frame" x="16" y="214" width="343" height="239"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="1do-U5-F4a"/>
                                     <constraint firstAttribute="height" constant="239" id="vxX-zN-XYf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -62,7 +62,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="YZV-WY-R6X" firstAttribute="leading" secondItem="7qg-Xt-N2t" secondAttribute="leadingMargin" id="6J6-oz-qIS"/>
                             <constraint firstItem="znM-5e-Zu3" firstAttribute="centerX" secondItem="7qg-Xt-N2t" secondAttribute="centerX" id="Ftq-MV-kzc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YZV-WY-R6X" secondAttribute="trailing" id="Fyh-1i-aKm"/>
                             <constraint firstItem="YZV-WY-R6X" firstAttribute="centerX" secondItem="7qg-Xt-N2t" secondAttribute="centerX" id="YZz-ps-Zxk"/>
                             <constraint firstItem="YZV-WY-R6X" firstAttribute="centerY" secondItem="7qg-Xt-N2t" secondAttribute="centerY" id="h79-ap-pot"/>
                             <constraint firstItem="znM-5e-Zu3" firstAttribute="top" secondItem="F5z-4b-Gdn" secondAttribute="bottom" constant="22" id="rUC-n3-kGC"/>

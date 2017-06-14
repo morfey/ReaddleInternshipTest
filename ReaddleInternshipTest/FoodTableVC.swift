@@ -27,7 +27,6 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
                                                selector: #selector(FoodTableVC.receiveToggleAuthUINotification(_:)),
                                                name: NSNotification.Name(rawValue: "ServiceSpreadsheet"),
                                                object: service.authorizer)
-        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
         statusText.text = "Меню на сегодня"
     }
     
@@ -50,7 +49,8 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
             getUsersList()
             if notification.userInfo != nil {
                 guard let userInfo = notification.userInfo as? [String:String] else { return }
-                self.currentUser = userInfo["currentUser"]
+                self.currentUser = userInfo["currentUser"]!
+                statusText.text = "Меню на сегодня для\n \(self.currentUser!)"
             }
         }
     }
