@@ -10,7 +10,6 @@ import UIKit
 import GoogleAPIClientForREST
 
 class FoodTableVC: UIViewController, GIDSignInUIDelegate{
-    //@IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var output: UITextView!
     @IBOutlet weak var statusText: UILabel!
     
@@ -18,30 +17,22 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     var dishesForToday: [String]! = []
     private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда '", "'Четверг'", "'Пятница'", "'Суббота'"]
     private let service = GTLRSheetsService()
-    private var choiseForWeek: [String] = []
     var currentUser: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        toggleAuthUI()
+        
         GIDSignIn.sharedInstance().uiDelegate = self
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(FoodTableVC.receiveToggleAuthUINotification(_:)),
                                                name: NSNotification.Name(rawValue: "ServiceSpreadsheet"),
                                                object: service.authorizer)
-
+        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
+        statusText.text = "Меню на сегодня"
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        toggleAuthUI()
-    }
-    
-    func toggleAuthUI() {
-        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            // Signed in
-            dismiss(animated: true, completion: nil)
-            getUsersList()            
-        } else {
+        if !GIDSignIn.sharedInstance().hasAuthInKeychain() {
             performSegue(withIdentifier: "LoginVC", sender: nil)
         }
     }
@@ -55,17 +46,17 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     @objc func receiveToggleAuthUINotification(_ notification: NSNotification) {
         if notification.name.rawValue == "ServiceSpreadsheet" {
             service.authorizer=notification.object as? GTMFetcherAuthorizationProtocol
-            self.toggleAuthUI()
+            dismiss(animated: true, completion: nil)
+            getUsersList()
             if notification.userInfo != nil {
                 guard let userInfo = notification.userInfo as? [String:String] else { return }
-                self.statusText.text = userInfo["statusText"]!
-                self.currentUser = userInfo["currentUser"]!
+                self.currentUser = userInfo["currentUser"]
             }
         }
     }
     
     func getUsersList() {
-        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let spreadsheetId = SPREADSHEET_ID
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
         let range = "\(weekDays[currentDayOfWeek])!A:B"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
@@ -77,7 +68,7 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     }
     
     func userChoiseForToday(index: Int) {
-        let spreadsheetId = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"
+        let spreadsheetId = SPREADSHEET_ID
         let currentDayOfWeek = Date().dayNumberOfWeek()!-1
         let range = "\(weekDays[currentDayOfWeek])!B2:M\(index)"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
@@ -109,10 +100,9 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         for (index, choise) in choises.enumerated() {
             if choise == "1" {
                 dishesForToday.append(dishes[index])
-                output.text.append(dishes[index])
+                output.text.append("\(dishes[index])\n")
             }
         }
-        //print (dishesForToday)
     }
 
     func displayResultWithTicket(ticket: GTLRServiceTicket,
@@ -158,4 +148,10 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         present(alert, animated: true, completion: nil)
     }
 
+}
+
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
+    }
 }
