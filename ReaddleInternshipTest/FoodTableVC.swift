@@ -13,16 +13,26 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     @IBOutlet weak var output: UITextView!
     @IBOutlet weak var statusText: UILabel!
     
-    
+    private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     var dishesForToday: [String]! = []
-    private let weekDays = ["'Воскресенье'", "'Понедельник'", "'Вторник'", "'Среда '", "'Четверг'", "'Пятница'", "'Суббота'"]
+    private let weekDays = ["'Воскресенье'", "'Понедельник '", "'Вторник'", "'Среда '", "'Четверг '", "'Пятница '", "'Суббота'"]
     private let service = GTLRSheetsService()
     var currentUser: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var error: NSError?
+        GGLContext.sharedInstance().configureWithError(&error)
+        
+        if error != nil {
+            print(error!)
+            return
+        }
+        
         GIDSignIn.sharedInstance().uiDelegate = self
+        //GIDSignIn.sharedInstance().scopes = scopes
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(FoodTableVC.receiveToggleAuthUINotification(_:)),
                                                name: NSNotification.Name(rawValue: "ServiceSpreadsheet"),
@@ -31,9 +41,15 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if !GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            performSegue(withIdentifier: "LoginVC", sender: nil)
+        let currentDayOfWeek = Date().dayNumberOfWeek()
+        if currentDayOfWeek == 1 || currentDayOfWeek == 7 {
+            statusText.text = "Сегодня же выходной"
+        } else {
+            if !GIDSignIn.sharedInstance().hasAuthInKeychain() {
+                performSegue(withIdentifier: "LoginVC", sender: nil)
+            }
         }
+
     }
     
     deinit {
@@ -41,6 +57,7 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
                                                   name: NSNotification.Name(rawValue: "ServiceSpreadsheet"),
                                                   object: nil)
     }
+    
     
     @objc func receiveToggleAuthUINotification(_ notification: NSNotification) {
         if notification.name.rawValue == "ServiceSpreadsheet" {
@@ -57,8 +74,8 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     
     func getUsersList() {
         let spreadsheetId = SPREADSHEET_ID
-        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!A:B"
+        let currentDayOfWeek = Date().dayNumberOfWeek()!
+        let range = "\(weekDays[currentDayOfWeek-1])!A:B"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         service.executeQuery(query,
@@ -69,8 +86,8 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     
     func userChoiseForToday(index: Int) {
         let spreadsheetId = SPREADSHEET_ID
-        let currentDayOfWeek = Date().dayNumberOfWeek()!-1
-        let range = "\(weekDays[currentDayOfWeek])!B2:M\(index)"
+        let currentDayOfWeek = Date().dayNumberOfWeek()!
+        let range = "\(weekDays[currentDayOfWeek-1])!B2:M\(index)"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         query.majorDimension = "ROWS"
@@ -153,3 +170,4 @@ extension Date {
         return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
 }
+
