@@ -8,4 +8,4 @@
 
 import Foundation
 
-let SHEET_URL = "https://docs.google.com/spreadsheets/d/1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88/edit"
+let SPREADSHEET_ID = "1NrPDjp80_7venKB0OsIqZLrq47jbx9c-lrWILYJPS88"

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="suF-gC-sj1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReaddleInternshipTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="ReaddleInternshipTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,14 +21,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleback" translatesAutoresizingMaskIntoConstraints="NO" id="nY3-9f-ZtQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nY3-9f-ZtQ" secondAttribute="bottom" id="Ii7-lR-hdM"/>
+                            <constraint firstAttribute="trailing" secondItem="nY3-9f-ZtQ" secondAttribute="trailing" id="Jsx-io-4Nm"/>
+                            <constraint firstItem="nY3-9f-ZtQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MJG-Iz-LYZ"/>
+                            <constraint firstItem="nY3-9f-ZtQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VyX-Ww-Uzb"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <segue destination="suF-gC-sj1" kind="show" identifier="FoodTableVC" id="zyD-Vh-L1O"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="328.80000000000001" y="35.532233883058474"/>
         </scene>
         <!--Food TableVC-->
         <scene sceneID="cKy-Oc-llM">
@@ -41,23 +51,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZV-WY-R6X">
-                                <rect key="frame" x="67" y="378" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xo8-g6-mei">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZV-WY-R6X">
+                                <rect key="frame" x="16" y="214" width="343" height="239"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="239" id="vxX-zN-XYf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Меню на сегодня" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znM-5e-Zu3">
+                                <rect key="frame" x="81" y="42" width="213" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="194" id="iJU-ds-uQ1"/>
+                                    <constraint firstAttribute="width" constant="213" id="mad-yV-uxL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xo8-g6-mei" firstAttribute="leading" secondItem="7qg-Xt-N2t" secondAttribute="leading" id="2A4-UE-em1"/>
+                            <constraint firstItem="YZV-WY-R6X" firstAttribute="leading" secondItem="7qg-Xt-N2t" secondAttribute="leadingMargin" id="6J6-oz-qIS"/>
+                            <constraint firstItem="znM-5e-Zu3" firstAttribute="centerX" secondItem="7qg-Xt-N2t" secondAttribute="centerX" id="Ftq-MV-kzc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YZV-WY-R6X" secondAttribute="trailing" id="Fyh-1i-aKm"/>
+                            <constraint firstItem="xo8-g6-mei" firstAttribute="top" secondItem="7qg-Xt-N2t" secondAttribute="top" id="NJb-cS-wMH"/>
+                            <constraint firstItem="sOQ-oj-7tT" firstAttribute="top" secondItem="xo8-g6-mei" secondAttribute="bottom" id="TDh-tC-WfU"/>
+                            <constraint firstItem="YZV-WY-R6X" firstAttribute="centerX" secondItem="7qg-Xt-N2t" secondAttribute="centerX" id="YZz-ps-Zxk"/>
+                            <constraint firstItem="YZV-WY-R6X" firstAttribute="centerY" secondItem="7qg-Xt-N2t" secondAttribute="centerY" id="h79-ap-pot"/>
+                            <constraint firstItem="znM-5e-Zu3" firstAttribute="top" secondItem="F5z-4b-Gdn" secondAttribute="bottom" constant="22" id="rUC-n3-kGC"/>
+                            <constraint firstAttribute="trailing" secondItem="xo8-g6-mei" secondAttribute="trailing" id="vmr-3q-zJw"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="output" destination="YZV-WY-R6X" id="heB-rb-szb"/>
+                        <outlet property="statusText" destination="znM-5e-Zu3" id="fdT-af-RvQ"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginVC" id="rmP-Rf-5E5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tZ-LG-Da8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5999999999999" y="36.431784107946029"/>
+            <point key="canvasLocation" x="-511.19999999999999" y="35.532233883058474"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="375" height="667"/>
+        <image name="googleback" width="375" height="667"/>
+    </resources>
 </document>

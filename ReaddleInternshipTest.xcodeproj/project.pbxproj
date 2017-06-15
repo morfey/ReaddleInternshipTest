@@ -7,26 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		228DEF381EF18082005C30D7 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */; };
+		228DEF391EF18082005C30D7 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */; };
 		22D8CADD1EF00E1600FDFD0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */; };
-		22D8CADF1EF00E1600FDFD0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CADE1EF00E1600FDFD0C /* ViewController.swift */; };
+		22D8CADF1EF00E1600FDFD0C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CADE1EF00E1600FDFD0C /* LoginVC.swift */; };
 		22D8CAE21EF00E1600FDFD0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE01EF00E1600FDFD0C /* Main.storyboard */; };
 		22D8CAE51EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */; };
 		22D8CAE71EF00E1600FDFD0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE61EF00E1600FDFD0C /* Assets.xcassets */; };
 		22D8CAEA1EF00E1600FDFD0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */; };
 		22D8CAF51EF011CF00FDFD0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */; };
 		22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */; };
-		22D8CAFF1EF0269100FDFD0C /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CAFE1EF0269100FDFD0C /* DayCell.swift */; };
 		22D8CB011EF02DCA00FDFD0C /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CB001EF02DCA00FDFD0C /* Constans.swift */; };
-		22D8CB031EF038A700FDFD0C /* WeekendMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */; };
 		58C1EB45E6FEBA7F0196C8DB /* Pods_ReaddleInternshipTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 095CDDDBE4B2442DC661E17E /* Pods_ReaddleInternshipTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		095CDDDBE4B2442DC661E17E /* Pods_ReaddleInternshipTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReaddleInternshipTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		128AF949BA87E5121E9813E8 /* Pods-ReaddleInternshipTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaddleInternshipTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReaddleInternshipTest/Pods-ReaddleInternshipTest.debug.xcconfig"; sourceTree = "<group>"; };
+		228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		22D8CAD91EF00E1600FDFD0C /* ReaddleInternshipTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaddleInternshipTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22D8CADE1EF00E1600FDFD0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		22D8CADE1EF00E1600FDFD0C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		22D8CAE11EF00E1600FDFD0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22D8CAE41EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReaddleInternshipTest.xcdatamodel; sourceTree = "<group>"; };
 		22D8CAE61EF00E1600FDFD0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,9 +37,7 @@
 		22D8CAF11EF00E9400FDFD0C /* ReaddleInternshipTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReaddleInternshipTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableVC.swift; sourceTree = "<group>"; };
-		22D8CAFE1EF0269100FDFD0C /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		22D8CB001EF02DCA00FDFD0C /* Constans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
-		22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekendMenu.swift; sourceTree = "<group>"; };
 		A6FDCA26CBE4EB2F33FCD545 /* Pods-ReaddleInternshipTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaddleInternshipTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReaddleInternshipTest/Pods-ReaddleInternshipTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +87,7 @@
 				22D8CAF71EF015D700FDFD0C /* View */,
 				22D8CAF61EF015BA00FDFD0C /* Model */,
 				22D8CAE61EF00E1600FDFD0C /* Assets.xcassets */,
+				22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */,
 			);
 			path = ReaddleInternshipTest;
 			sourceTree = "<group>";
@@ -94,9 +95,10 @@
 		22D8CAF61EF015BA00FDFD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */,
+				228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */,
 				22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */,
 				22D8CB001EF02DCA00FDFD0C /* Constans.swift */,
-				22D8CB021EF038A700FDFD0C /* WeekendMenu.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -106,7 +108,6 @@
 			children = (
 				22D8CAE01EF00E1600FDFD0C /* Main.storyboard */,
 				22D8CAE81EF00E1600FDFD0C /* LaunchScreen.storyboard */,
-				22D8CAFE1EF0269100FDFD0C /* DayCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -114,8 +115,8 @@
 		22D8CAF81EF015DE00FDFD0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				22D8CADE1EF00E1600FDFD0C /* ViewController.swift */,
 				22D8CAFC1EF0251600FDFD0C /* FoodTableVC.swift */,
+				22D8CADE1EF00E1600FDFD0C /* LoginVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -126,7 +127,6 @@
 				22D8CAEB1EF00E1600FDFD0C /* Info.plist */,
 				22D8CAF41EF011CF00FDFD0C /* GoogleService-Info.plist */,
 				22D8CAF11EF00E9400FDFD0C /* ReaddleInternshipTest-Bridging-Header.h */,
-				22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -178,6 +178,11 @@
 						DevelopmentTeam = TGE7YRQW2V;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -266,11 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D8CB031EF038A700FDFD0C /* WeekendMenu.swift in Sources */,
-				22D8CADF1EF00E1600FDFD0C /* ViewController.swift in Sources */,
+				22D8CADF1EF00E1600FDFD0C /* LoginVC.swift in Sources */,
 				22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */,
+				228DEF381EF18082005C30D7 /* User+CoreDataClass.swift in Sources */,
+				228DEF391EF18082005C30D7 /* User+CoreDataProperties.swift in Sources */,
 				22D8CB011EF02DCA00FDFD0C /* Constans.swift in Sources */,
-				22D8CAFF1EF0269100FDFD0C /* DayCell.swift in Sources */,
 				22D8CAE51EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld in Sources */,
 				22D8CADD1EF00E1600FDFD0C /* AppDelegate.swift in Sources */,
 			);
@@ -399,6 +404,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = TGE7YRQW2V;
 				INFOPLIST_FILE = ReaddleInternshipTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tim.ReaddleInternshipTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,6 +422,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = TGE7YRQW2V;
 				INFOPLIST_FILE = ReaddleInternshipTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tim.ReaddleInternshipTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
