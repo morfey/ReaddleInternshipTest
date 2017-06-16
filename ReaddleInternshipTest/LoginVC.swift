@@ -15,7 +15,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     private let scopes = [kGTLRAuthScopeDriveReadonly, kGTLRAuthScopeSheetsSpreadsheetsReadonly]
     private let service = GTLRSheetsService()
-    private var currentUser: User?
     private var usersList: [String] = []
     private var currentUserData = Dictionary<String, Any> ()
 
@@ -49,7 +48,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     func getUsersList() {
         let spreadsheetId = SPREADSHEET_ID
-        let range = "A3:B"
+        let range = "A:B"
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet
             .query(withSpreadsheetId: spreadsheetId, range:range)
         service.executeQuery(query,
@@ -80,7 +79,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 usersList.append(name)
             }
         }
-        print(usersList)
     }
     
     func showAlert(title : String, message: String) {
@@ -119,9 +117,11 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 if let name = textField.text, textField.text != "", self.usersList.contains(textField.text!) {
                     let dataName = User(context: context)
                     dataName.name = name
+                    dataName.index = "\(self.usersList.index(of: name)!+1)"
                     ad.saveContext()
                     self.currentUserData["currentUser"] = GIDSignIn.sharedInstance().currentUser.authentication.fetcherAuthorizer()
                     self.currentUserData["currentUserName"] = name
+                    self.currentUserData["currentUserIndex"] = self.usersList.index(of: name)!+1
                     self.performSegue(withIdentifier: "FoodTableVC", sender: self.currentUserData)
                 } else {
                     self.present(alert!, animated: true, completion: nil)
@@ -131,9 +131,10 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         do {
             let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
             let savedName = try context.fetch(fetchRequest)
-            if let fetchedName = savedName.first?.name{
+            if let fetchedName = savedName.first?.name, let fetchedIndex = savedName.first?.index {
                 self.currentUserData["currentUser"] = GIDSignIn.sharedInstance().currentUser.authentication.fetcherAuthorizer()
                 self.currentUserData["currentUserName"] = fetchedName
+                self.currentUserData["currentUserIndex"] = Int(fetchedIndex)
                 self.performSegue(withIdentifier: "FoodTableVC", sender: self.currentUserData)
             } else {
                 self.present(alert, animated: true, completion: nil)
