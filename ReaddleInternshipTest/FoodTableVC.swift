@@ -37,6 +37,7 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         service.authorizer = currentUser
         
         statusText.text = "Меню на сегодня"
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
