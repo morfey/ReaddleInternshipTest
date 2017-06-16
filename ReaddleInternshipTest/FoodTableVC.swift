@@ -17,7 +17,7 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
     var dishesForToday: [String]! = []
     private let weekDays = ["'Воскресенье'", "'Понедельник '", "'Вторник'", "'Среда '", "'Четверг '", "'Пятница '", "'Суббота'"]
     private let service = GTLRSheetsService()
-    var currentUser: String!
+    var currentUserData = Dictionary<String, Any> ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +31,13 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         }
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        //GIDSignIn.sharedInstance().scopes = scopes
+        GIDSignIn.sharedInstance().scopes = scopes
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(FoodTableVC.receiveToggleAuthUINotification(_:)),
-                                               name: NSNotification.Name(rawValue: "ServiceSpreadsheet"),
-                                               object: service.authorizer)
+        let currentUser = currentUserData["currentUser"] as! GTMFetcherAuthorizationProtocol
+        service.authorizer = currentUser
+        
         statusText.text = "Меню на сегодня"
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,9 +45,11 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         if currentDayOfWeek == 1 || currentDayOfWeek == 7 {
             statusText.text = "Сегодня же выходной"
         } else {
-            if !GIDSignIn.sharedInstance().hasAuthInKeychain() {
-                performSegue(withIdentifier: "LoginVC", sender: nil)
+            getUsersList()
+            if let userName = currentUserData["currentUserName"] {
+               statusText.text = "Меню на сегодня для\n \(userName)"
             }
+            
         }
 
     }
@@ -58,19 +60,6 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
                                                   object: nil)
     }
     
-    
-    @objc func receiveToggleAuthUINotification(_ notification: NSNotification) {
-        if notification.name.rawValue == "ServiceSpreadsheet" {
-            service.authorizer=notification.object as? GTMFetcherAuthorizationProtocol
-            dismiss(animated: true, completion: nil)
-            getUsersList()
-            if notification.userInfo != nil {
-                guard let userInfo = notification.userInfo as? [String:String] else { return }
-                self.currentUser = userInfo["currentUser"]!
-                statusText.text = "Меню на сегодня для\n \(self.currentUser!)"
-            }
-        }
-    }
     
     func getUsersList() {
         let spreadsheetId = SPREADSHEET_ID
@@ -141,7 +130,7 @@ class FoodTableVC: UIViewController, GIDSignInUIDelegate{
         for (index, row) in rows.enumerated() {
             if row.count > 0 {
                 name = row[0] as! String
-                if name == self.currentUser {
+                if name == self.currentUserData["currentUserName"] as! String {
                     userChoiseForToday(index: index+1)
                 }
             }
