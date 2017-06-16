@@ -17,6 +17,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     private let service = GTLRSheetsService()
     private var currentUser: User?
     private var usersList: [String] = []
+    private var currentUserData = Dictionary<String, Any> ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,11 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         signInButton.center = view.center
         
         view.addSubview(signInButton)
+        
+        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+            print ("Signed in")
+            GIDSignIn.sharedInstance().signInSilently()
+        }
     }
     
     func getUsersList() {
@@ -113,10 +119,9 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                     let dataName = User(context: context)
                     dataName.name = name
                     ad.saveContext()
-                    NotificationCenter.default.post(
-                        name: Notification.Name(rawValue: "ServiceSpreadsheet"),
-                        object: user.authentication.fetcherAuthorizer(),
-                        userInfo: ["currentUser":name])
+                    self.currentUserData["currentUser"] = GIDSignIn.sharedInstance().currentUser.authentication.fetcherAuthorizer()
+                    self.currentUserData["currentUserName"] = name
+                    self.performSegue(withIdentifier: "FoodTableVC", sender: self.currentUserData)
                 } else {
                     self.present(alert!, animated: true, completion: nil)
                 }
@@ -126,10 +131,9 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
             let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
             let savedName = try context.fetch(fetchRequest)
             if let fetchedName = savedName.first?.name{
-                NotificationCenter.default.post(
-                    name: Notification.Name(rawValue: "ServiceSpreadsheet"),
-                    object: user.authentication.fetcherAuthorizer(),
-                    userInfo: ["currentUser":fetchedName])
+                self.currentUserData["currentUser"] = GIDSignIn.sharedInstance().currentUser.authentication.fetcherAuthorizer()
+                self.currentUserData["currentUserName"] = fetchedName
+                self.performSegue(withIdentifier: "FoodTableVC", sender: self.currentUserData)
             } else {
                 self.present(alert, animated: true, completion: nil)
 
@@ -140,6 +144,13 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let foodVC = segue.destination as? FoodTableVC {
+            foodVC.currentUserData = sender as! Dictionary<String, Any>            
+        }
+    }
+
     
 }
 
