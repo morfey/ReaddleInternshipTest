@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		228DEF381EF18082005C30D7 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */; };
-		228DEF391EF18082005C30D7 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */; };
+		2277CD551EF4094B002E78E8 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277CD531EF4094B002E78E8 /* User+CoreDataClass.swift */; };
+		2277CD561EF4094B002E78E8 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277CD541EF4094B002E78E8 /* User+CoreDataProperties.swift */; };
 		22D8CADD1EF00E1600FDFD0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */; };
 		22D8CADF1EF00E1600FDFD0C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8CADE1EF00E1600FDFD0C /* LoginVC.swift */; };
 		22D8CAE21EF00E1600FDFD0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D8CAE01EF00E1600FDFD0C /* Main.storyboard */; };
@@ -24,8 +24,8 @@
 /* Begin PBXFileReference section */
 		095CDDDBE4B2442DC661E17E /* Pods_ReaddleInternshipTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReaddleInternshipTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		128AF949BA87E5121E9813E8 /* Pods-ReaddleInternshipTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReaddleInternshipTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReaddleInternshipTest/Pods-ReaddleInternshipTest.debug.xcconfig"; sourceTree = "<group>"; };
-		228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2277CD531EF4094B002E78E8 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2277CD541EF4094B002E78E8 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		22D8CAD91EF00E1600FDFD0C /* ReaddleInternshipTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaddleInternshipTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D8CADC1EF00E1600FDFD0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22D8CADE1EF00E1600FDFD0C /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 		22D8CAF61EF015BA00FDFD0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				228DEF361EF18082005C30D7 /* User+CoreDataClass.swift */,
-				228DEF371EF18082005C30D7 /* User+CoreDataProperties.swift */,
+				2277CD531EF4094B002E78E8 /* User+CoreDataClass.swift */,
+				2277CD541EF4094B002E78E8 /* User+CoreDataProperties.swift */,
 				22D8CAE31EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld */,
 				22D8CB001EF02DCA00FDFD0C /* Constans.swift */,
 			);
@@ -273,8 +273,8 @@
 			files = (
 				22D8CADF1EF00E1600FDFD0C /* LoginVC.swift in Sources */,
 				22D8CAFD1EF0251600FDFD0C /* FoodTableVC.swift in Sources */,
-				228DEF381EF18082005C30D7 /* User+CoreDataClass.swift in Sources */,
-				228DEF391EF18082005C30D7 /* User+CoreDataProperties.swift in Sources */,
+				2277CD551EF4094B002E78E8 /* User+CoreDataClass.swift in Sources */,
+				2277CD561EF4094B002E78E8 /* User+CoreDataProperties.swift in Sources */,
 				22D8CB011EF02DCA00FDFD0C /* Constans.swift in Sources */,
 				22D8CAE51EF00E1600FDFD0C /* ReaddleInternshipTest.xcdatamodeld in Sources */,
 				22D8CADD1EF00E1600FDFD0C /* AppDelegate.swift in Sources */,
